@@ -36,8 +36,12 @@ export async function generateStaticParams() {
   return params;
 }
 
-// Remove explicit type for generateMetadata
-export async function generateMetadata({ params }: { params: { slug: string } }) {
+type Params = { params: { slug: string } };
+
+/**
+ * @param {{ params: { slug: string } }} context
+ */
+export async function generateMetadata({ params }: Params) {
   const { slug } = params;
   const post = await getPost(slug);
   return {
@@ -45,8 +49,10 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   };
 }
 
-// Remove explicit type for PostPage
-export default async function PostPage({ params }: { params: { slug: string } }) {
+/**
+ * @param {{ params: { slug: string } }} context
+ */
+export default async function PostPage({ params }: Params) {
   const { slug } = params;
   const post = await getPost(slug);
   if (!post) return notFound();
