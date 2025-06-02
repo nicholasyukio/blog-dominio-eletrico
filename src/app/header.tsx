@@ -1,6 +1,8 @@
 "use client";
 import React, { useState } from 'react';
 import './header.css';
+import Link from 'next/link';
+import Image from 'next/image';
 
 export interface HeaderProps {
   isMobile: boolean;
@@ -8,10 +10,6 @@ export interface HeaderProps {
 
 export function Header() {
   const [menuOpen0, setMenuOpen0] = useState(false);
-  const [menuOpen1, setMenuOpen1] = useState(false);
-  const [menuOpen2, setMenuOpen2] = useState(false);
-  const [menuOpen3, setMenuOpen3] = useState(false);
-  const [menuOpen4, setMenuOpen4] = useState(false);
 
   const toggleMenu0 = () => setMenuOpen0((open) => !open);
 
@@ -19,13 +17,16 @@ return (
     <header className="header">
     {/* Logo quadrado */}
     <div className="logo-container">
-        <a href="/" title="Domínio Elétrico" className="logo-link">
-        <img
+        <Link href="/" title="Domínio Elétrico" className="logo-link">
+          <Image
             src="/dominio_eletrico_logo_2023_square_fundo_transparente.png"
             alt="Logo do Domínio Elétrico"
             className="logo"
-        />
-        </a>
+            width={60}
+            height={60}
+            priority
+          />
+        </Link>
     </div>
     <div className="header-title">
         <h1>Blog do Domínio Elétrico</h1>
@@ -37,7 +38,7 @@ return (
         {menuOpen0 && (
         <ul className="dropdown">
             <li className="menu-title"><b>Sobre</b></li>
-            <li><a href="/" className="link">Página inicial do blog</a></li>
+            <li><Link href="/" className="link">Página inicial do blog</Link></li>
             <li><a href="https://dominioeletrico.com.br" className="link">Site Domínio Elétrico</a></li>
         </ul>
         )}

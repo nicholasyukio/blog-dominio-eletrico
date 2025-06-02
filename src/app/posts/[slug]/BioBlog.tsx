@@ -1,16 +1,19 @@
 import React from 'react';
+import Image from 'next/image';
 import { KnowCourseFromBlogButton } from './KnowCourseFromBlogButton';
 import styles from './page.module.css';
 
 export function BioBlog() {
   return (
     <section className={styles.bioSection}>
-      <img
-          src="/foto_pessoal_pequena-768x765.jpg"
-          alt="Imagem da Seção 1"
-          width={160}
-          className={styles['bio-image']}
-       />
+      <Image
+        src="/foto_pessoal_pequena-768x765.jpg"
+        alt="Imagem da Seção 1"
+        width={160}
+        height={160}
+        className={styles['bio-image']}
+        priority
+      />
       <div className={styles.bioText}>
         <h2>Sobre o Prof. Nicholas Yukio</h2>
         <p>Sou engenheiro eletrônico formado no ITA em 2017. </p>
