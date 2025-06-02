@@ -1,6 +1,5 @@
 // app/posts/[slug]/page.tsx
 import { notFound } from 'next/navigation';
-// @ts-ignore
 import DOMPurify from 'isomorphic-dompurify';
 import { marked } from 'marked';
 import styles from './page.module.css';

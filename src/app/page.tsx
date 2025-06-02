@@ -16,7 +16,7 @@ export default async function Home() {
   let posts: Post[] = [];
   try {
     posts = await getPosts();
-  } catch (e) {
+  } catch {
     return (
       <>
         <Header />
