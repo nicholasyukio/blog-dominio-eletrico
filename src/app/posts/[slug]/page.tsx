@@ -20,34 +20,32 @@ export type Post = {
 const API_BASE = process.env.NEXT_PUBLIC_BACKEND_API_BASE_ENDPOINT;
 
 async function getPost(post_id: string): Promise<Post | null> {
-  const res = await fetch(`${API_BASE}/get-post-by-id/${post_id}`, { cache: 'no-store' });
+  const res = await fetch(`${API_BASE}/get-post-by-id/${post_id}`);
   if (!res.ok) return null;
   return res.json();
 }
 
 export async function generateStaticParams() {
-   return [
-    { slug: 'first-post' },
-    { slug: 'my-second-post' },
-    { slug: 'hello-world' },
-  ];
-  const res = await fetch('https://your-backend.com/api/posts');
-  const posts: Post[] = await res.json();
-
-  return posts.map(post => ({ slug: post.slug }));
+  // Generate all possible slugs for post_id 00000-00099
+  const params = [];
+  for (let i = 0; i < 100; i++) {
+    const id = i.toString().padStart(5, '0');
+    params.push({ slug: id });
+  }
+  return params;
 }
 
-export async function generateMetadata(props: { params: Promise<{ slug: string }> }) {
-  const { slug } = await props.params;
-  const post = await getPost(slug.substring(0, 5));
+export async function generateMetadata(props: { params: { slug: string } }) {
+  const { slug } = props.params;
+  const post = await getPost(slug);
   return {
     title: post?.title ?? 'Post Not Found',
   };
 }
 
-export default async function PostPage(props: { params: Promise<{ slug: string }> }) {
-  const { slug } = await props.params;
-  const post = await getPost(slug.substring(0, 5));
+export default async function PostPage(props: { params: { slug: string } }) {
+  const { slug } = props.params;
+  const post = await getPost(slug);
   if (!post) return notFound();
 
   // Fetch recommended posts (random, excluding current)
