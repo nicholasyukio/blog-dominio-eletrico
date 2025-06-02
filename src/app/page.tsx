@@ -6,10 +6,30 @@ import { KnowCourseFromBlogButton } from "./posts/[slug]/KnowCourseFromBlogButto
 
 const API_BASE = process.env.NEXT_PUBLIC_BACKEND_API_BASE_ENDPOINT;
 
+function getRandomPostIds(count: number, max: number = 100): string[] {
+  const ids = new Set<string>();
+  while (ids.size < count) {
+    const n = Math.floor(Math.random() * max);
+    ids.add(n.toString().padStart(5, '0'));
+  }
+  return Array.from(ids);
+}
+
 async function getPosts(): Promise<Post[]> {
-  const res = await fetch(`${API_BASE}/get-all-posts`, { cache: 'no-store' });
-  if (!res.ok) throw new Error('Failed to fetch posts');
-  return res.json();
+  const ids = getRandomPostIds(10, 100);
+  const posts: Post[] = [];
+  await Promise.all(
+    ids.map(async (id) => {
+      try {
+        const res = await fetch(`${API_BASE}/get-post-by-id/${id}`, { cache: 'no-store' });
+        if (res.ok) {
+          const post = await res.json();
+          if (post && post.title) posts.push(post);
+        }
+      } catch {}
+    })
+  );
+  return posts;
 }
 
 export default async function Home() {

@@ -52,19 +52,28 @@ export default async function PostPage(props: { params: Promise<{ slug: string }
 
   // Fetch recommended posts (random, excluding current)
   let recommendedPosts: Post[] = [];
-  try {
-    const res = await fetch(`${API_BASE}/get-all-posts`, { cache: 'no-store' });
-    if (res.ok) {
-      const allPosts: Post[] = await res.json();
-      const filtered = allPosts.filter(p => p.slug !== slug);
-      // Shuffle filtered posts and pick 10
-      for (let i = filtered.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [filtered[i], filtered[j]] = [filtered[j], filtered[i]];
-      }
-      recommendedPosts = filtered.slice(0, 10);
+  const currentId = slug.substring(0, 5);
+  const getRandomPostIds = (count: number, max: number = 100, excludeId?: string): string[] => {
+    const ids = new Set<string>();
+    while (ids.size < count) {
+      const n = Math.floor(Math.random() * max);
+      const id = n.toString().padStart(5, '0');
+      if (id !== excludeId) ids.add(id);
     }
-  } catch {}
+    return Array.from(ids);
+  };
+  const recIds = getRandomPostIds(10, 100, currentId);
+  await Promise.all(
+    recIds.map(async (id) => {
+      try {
+        const res = await fetch(`${API_BASE}/get-post-by-id/${id}`, { cache: 'no-store' });
+        if (res.ok) {
+          const post = await res.json();
+          if (post && post.title) recommendedPosts.push(post);
+        }
+      } catch {}
+    })
+  );
 
   // Parse Markdown to HTML and sanitize (await in case marked.parse is async)
   const rawHtml = await marked.parse(post.content as string);
