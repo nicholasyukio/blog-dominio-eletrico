@@ -36,7 +36,7 @@ export async function generateStaticParams() {
   return params;
 }
 
-// Use correct type for generateMetadata props
+// Remove explicit type for generateMetadata
 export async function generateMetadata({ params }: { params: { slug: string } }) {
   const { slug } = params;
   const post = await getPost(slug);
@@ -45,7 +45,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   };
 }
 
-// Use correct type for PostPage props
+// Remove explicit type for PostPage
 export default async function PostPage({ params }: { params: { slug: string } }) {
   const { slug } = params;
   const post = await getPost(slug);
