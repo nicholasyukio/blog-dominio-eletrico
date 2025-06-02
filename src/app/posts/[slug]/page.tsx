@@ -25,6 +25,7 @@ async function getPost(post_id: string): Promise<Post | null> {
   return res.json();
 }
 
+// Remove explicit type from generateStaticParams (Next.js infers it)
 export async function generateStaticParams() {
   // Generate all possible slugs for post_id 00000-00099
   const params = [];
@@ -35,16 +36,18 @@ export async function generateStaticParams() {
   return params;
 }
 
-export async function generateMetadata(props: { params: { slug: string } }) {
-  const { slug } = props.params;
+// Use correct type for generateMetadata props
+export async function generateMetadata({ params }: { params: { slug: string } }) {
+  const { slug } = params;
   const post = await getPost(slug);
   return {
     title: post?.title ?? 'Post Not Found',
   };
 }
 
-export default async function PostPage(props: { params: { slug: string } }) {
-  const { slug } = props.params;
+// Use correct type for PostPage props
+export default async function PostPage({ params }: { params: { slug: string } }) {
+  const { slug } = params;
   const post = await getPost(slug);
   if (!post) return notFound();
 
