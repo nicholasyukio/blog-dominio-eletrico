@@ -51,7 +51,7 @@ export default async function PostPage(props: { params: Promise<{ slug: string }
   if (!post) return notFound();
 
   // Fetch recommended posts (random, excluding current)
-  let recommendedPosts: Post[] = [];
+  const recommendedPosts: Post[] = [];
   const currentId = slug.substring(0, 5);
   const getRandomPostIds = (count: number, max: number = 100, excludeId?: string): string[] => {
     const ids = new Set<string>();
