@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 
 const geistSans = Geist({
@@ -11,7 +10,7 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
+export const metadata = {
   title: "Blog do Domínio Elétrico",
   keywords: ["blog", "domínio elétrico", "eletricidade", "engenharia elétrica"],
   authors: [{ name: "Nicholas Yukio" }],
@@ -19,11 +18,7 @@ export const metadata: Metadata = {
   description: "Blog do Domínio Elétrico - Aprenda sobre eletricidade e engenharia elétrica",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>

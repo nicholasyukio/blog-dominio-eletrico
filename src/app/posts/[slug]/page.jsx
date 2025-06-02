@@ -1,4 +1,4 @@
-// app/posts/[slug]/page.tsx
+// app/posts/[slug]/page.jsx
 import { notFound } from 'next/navigation';
 import DOMPurify from 'isomorphic-dompurify';
 import { marked } from 'marked';
@@ -8,26 +8,15 @@ import { BioBlog } from './BioBlog';
 import { KnowCourseFromBlogButton } from './KnowCourseFromBlogButton';
 import Link from 'next/link';
 
-export type Post = {
-  post_id: string;
-  slug: string;
-  title: string;
-  description: string;
-  content: string;
-  date: string;
-};
-
 const API_BASE = process.env.NEXT_PUBLIC_BACKEND_API_BASE_ENDPOINT;
 
-async function getPost(post_id: string): Promise<Post | null> {
+async function getPost(post_id) {
   const res = await fetch(`${API_BASE}/get-post-by-id/${post_id}`);
   if (!res.ok) return null;
   return res.json();
 }
 
-// Remove explicit type from generateStaticParams (Next.js infers it)
 export async function generateStaticParams() {
-  // Generate all possible slugs for post_id 00000-00099
   const params = [];
   for (let i = 0; i < 100; i++) {
     const id = i.toString().padStart(5, '0');
@@ -36,12 +25,7 @@ export async function generateStaticParams() {
   return params;
 }
 
-type Params = { params: { slug: string } };
-
-/**
- * @param {{ params: { slug: string } }} context
- */
-export async function generateMetadata({ params }: Params) {
+export async function generateMetadata({ params }) {
   const { slug } = params;
   const post = await getPost(slug);
   return {
@@ -49,19 +33,18 @@ export async function generateMetadata({ params }: Params) {
   };
 }
 
-/**
- * @param {{ params: { slug: string } }} context
- */
-export default async function PostPage({ params }: Params) {
-  const { slug } = params;
-  const post = await getPost(slug);
+export default async function PostPage({ params }) {
+  // Await params if it is a Promise (for compatibility with Next.js dynamic API)
+  const resolvedParams = typeof params.then === 'function' ? await params : params;
+  const { slug } = resolvedParams;
+  const post = await getPost(slug.slice(0, 5)); // Ensure slug is 5 characters long
   if (!post) return notFound();
 
   // Fetch recommended posts (random, excluding current)
-  const recommendedPosts: Post[] = [];
+  const recommendedPosts = [];
   const currentId = slug.substring(0, 5);
-  const getRandomPostIds = (count: number, max: number = 100, excludeId?: string): string[] => {
-    const ids = new Set<string>();
+  const getRandomPostIds = (count, max = 100, excludeId) => {
+    const ids = new Set();
     while (ids.size < count) {
       const n = Math.floor(Math.random() * max);
       const id = n.toString().padStart(5, '0');
@@ -82,8 +65,8 @@ export default async function PostPage({ params }: Params) {
     })
   );
 
-  // Parse Markdown to HTML and sanitize (await in case marked.parse is async)
-  const rawHtml = await marked.parse(post.content as string);
+  // Parse Markdown to HTML and sanitize
+  const rawHtml = await marked.parse(typeof post.content === 'string' ? post.content : '');
   const html = DOMPurify.sanitize(rawHtml);
 
   return (

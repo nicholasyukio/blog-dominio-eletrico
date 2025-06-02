@@ -1,13 +1,12 @@
 import Link from "next/link";
 import styles from "./page.module.css";
 import { Header } from "./header";
-import type { Post } from "./posts/[slug]/page";
 import { KnowCourseFromBlogButton } from "./posts/[slug]/KnowCourseFromBlogButton";
 
 const API_BASE = process.env.NEXT_PUBLIC_BACKEND_API_BASE_ENDPOINT;
 
-function getRandomPostIds(count: number, max: number = 100): string[] {
-  const ids = new Set<string>();
+function getRandomPostIds(count, max = 100) {
+  const ids = new Set();
   while (ids.size < count) {
     const n = Math.floor(Math.random() * max);
     ids.add(n.toString().padStart(5, '0'));
@@ -15,9 +14,9 @@ function getRandomPostIds(count: number, max: number = 100): string[] {
   return Array.from(ids);
 }
 
-async function getPosts(): Promise<Post[]> {
+async function getPosts() {
   const ids = getRandomPostIds(10, 100);
-  const posts: Post[] = [];
+  const posts = [];
   await Promise.all(
     ids.map(async (id) => {
       try {
@@ -33,7 +32,7 @@ async function getPosts(): Promise<Post[]> {
 }
 
 export default async function Home() {
-  let posts: Post[] = [];
+  let posts = [];
   try {
     posts = await getPosts();
   } catch {
