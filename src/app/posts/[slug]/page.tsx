@@ -118,3 +118,5 @@ export default async function PostPage({ params }: { params: { slug: string } })
     </>
   );
 }
+
+export const dynamic = 'force-static';
