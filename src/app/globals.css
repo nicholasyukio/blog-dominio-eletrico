@@ -1,0 +1,22 @@
+/* src/app/globals.css */
+
+/* Reset and basic style */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+  background-color: #ffffff;
+  color: #111111;
+  font-family: var(--font-geist-sans), sans-serif;
+}
+
+/* Optional: smooth text rendering */
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

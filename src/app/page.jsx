@@ -1,7 +1,6 @@
 import Link from "next/link";
 import styles from "./page.module.css";
-import { Header } from "./header";
-import { KnowCourseFromBlogButton } from "./posts/[slug]/KnowCourseFromBlogButton";
+import Header from "./header.jsx";
 
 const API_BASE = process.env.NEXT_PUBLIC_BACKEND_API_BASE_ENDPOINT;
 
@@ -106,12 +105,6 @@ export default async function Home() {
             ))}
           </ul>
         </main>
-      </div>
-      <div className={styles.bottomBanner}>
-        <p style={{ margin: 0 }}>
-          No site Domínio Elétrico, você tem acesso a cursos em vídeo e playlists de circuitos elétricos criados pelo Prof. Nicholas Yukio. Clique no botão abaixo para criar uma conta gratuita e começar a estudar agora:
-        </p>
-        <KnowCourseFromBlogButton />
       </div>
     </>
   );

@@ -2,10 +2,18 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.5rem 1rem;
-  border-bottom: 1px solid #ccc;
-  background-color: rgb(210, 237, 255);
-  font-family: 'Segoe UI', 'Roboto', 'Arial', sans-serif;
+  padding: 0.6rem 1.2rem;
+  border-bottom: 1px solid #0a3b6f;
+  color: #fff;
+  background-color: #072959;
+  position: relative;
+  z-index: 100;
+}
+
+.header-desktop {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
 }
 
 .logo-container {
@@ -13,13 +21,234 @@
 }
 
 .logo {
-  width: 48px;
-  height: 48px;
+  width: 50px;
+  height: 50px;
   object-fit: contain;
 }
 
+/* NAVS */
 .nav {
   position: relative;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.public-nav {
+  justify-content: center;
+  gap: 1.6rem;
+}
+
+.internal-nav {
+  justify-content: flex-end;
+  gap: 1.6rem;
+}
+
+/* LINKS */
+.menu-button-desktop,
+.link,
+.menu-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.1rem;
+  color: #e2e2e2;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  transition: color 0.18s, transform 0.12s;
+}
+
+.menu-button-desktop:hover,
+.link:hover {
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+/* INTERNAL LINKS (gold) */
+.internal-link {
+  color: #ffcc33;
+  font-weight: 500;
+}
+
+.internal-link:hover {
+  color: #ffe066;
+}
+
+/* AUTH BUTTONS */
+.auth-button {
+  background-color: #0a3b6f;
+  border-radius: 20px;
+  padding: 0.4rem 0.9rem;
+  color: #ffffff;
+  font-weight: 500;
+  transition: all 0.18s;
+  border: 1px solid transparent;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+/* hover geral */
+.auth-button:hover {
+  background-color: #0d4b9f;
+  border-color: #fff;
+  transform: translateY(-1px);
+}
+
+.auth-button.signup {
+  background-color: #005f8a;
+}
+
+.auth-button.signup:hover {
+  background-color: #0073aa;
+}
+
+.auth-button.logout {
+  background-color: #8a1b1b;
+}
+
+.auth-button.logout:hover {
+  background-color: #b92222;
+}
+
+.auth-button.upgrade {
+  background-color: #ffcc33;
+  color: #072959;
+  font-weight: 600;
+}
+
+/* altera cor do ícone (svg) dentro do botão upgrade — mantém contraste */
+.auth-button.upgrade svg {
+  stroke: #072959;
+  color: #072959;
+}
+
+/* hover do upgrade */
+.auth-button.upgrade:hover {
+  background-color: #ffd84d;
+  transform: scale(1.03);
+}
+
+/* DESKTOP DROPDOWN (Área logada) */
+.dropdown-container {
+  position: relative;
+}
+
+.dropdown-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  cursor: pointer;
+  background: none;
+  border: none;
+  color: #e2e2e2;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 2.2rem;
+  right: 0;
+  background-color: #072959;
+  border: 1px solid #0a3b6f;
+  border-radius: 0.4rem;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.28);
+  flex-direction: column;
+  min-width: 200px;
+  z-index: 999;
+  padding: 0.25rem 0;
+}
+
+.dropdown-container.open .dropdown-menu,
+.dropdown-menu.visible {
+  display: flex;
+}
+
+.dropdown-item {
+  color: #e2e2e2;
+  text-decoration: none;
+  padding: 0.6rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  transition: background-color 0.15s;
+}
+
+.dropdown-item:hover {
+  background-color: #091a33;
+}
+
+/* MOBILE DROPDOWN */
+.dropdown {
+  position: fixed;
+  top: 50px;
+  left: 0;
+  width: 100%;
+  height: calc(100vh - 50px);
+  background-color: #072959;
+  z-index: 999;
+  padding: 1rem 1rem 3.5rem 1.6rem;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  list-style: none;
+}
+
+.dropdown ul {
+    list-style: none;
+}
+
+.link {
+  font-size: 1.2rem;
+  padding: 1rem;
+  border-bottom: 1px solid #0a3b6f;
+}
+
+.menu-title-collapsible {
+  margin-top: 1rem;
+  border-bottom: 1px solid #0a3b6f;
+  padding-bottom: 0.5rem;
+}
+
+.menu-title-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; /* keeps text and chevron close together */
+}
+
+.collapse-toggle {
+  background: none;
+  border: none;
+  color: #ffcc33;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+}
+
+.submenu {
+  margin-top: 0.5rem;
+  padding-left: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* MOBILE AUTH LINKS */
+.mobile-auth-link {
+  color: #ffcc33;
+}
+
+.mobile-auth-link:hover {
+  background-color: #0b386b;
+}
+
+.menu-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3em;
 }
 
 .menu-button {
@@ -27,54 +256,65 @@
   border: none;
   cursor: pointer;
   font-size: 1.2rem;
+  color: #ffffff;
 }
 
-.dropdown {
-  position: absolute;
-  top: 2rem;
-  right: 0;
-  left: auto;
-  background-color: white;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  min-width: 150px;
-  z-index: 1000;
+/* pequenas melhorias responsivas */
+@media (max-width: 768px) {
+  .public-nav { display: none; }
+  .internal-nav { display: none; }
 }
 
-.menu-title {
-  padding: 0.5rem 1rem;
-  font-weight: bold;
-  background-color: #f0f0f0;
-  color: #111;
+/* === Integrated fixes === */
+
+/* Header fixed when mobile menu is open */
+.header.fixed-top {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
 }
 
-.link {
-  display: block;
-  padding: 0.5rem 1rem;
-  text-decoration: none;
-  color: #333;
+/* Auth icons keep color harmony */
+.auth-button svg {
+  stroke: currentColor;
 }
 
-.link:hover {
-  background-color: #eee;
+/* Specific color consistency for auth links */
+.auth-button.logout svg {
+  stroke: #fff;
 }
 
-.login-icon-container {
-  flex-shrink: 0;
+.auth-button.upgrade svg {
+  stroke: #072959;
 }
 
-.login-link {
-  font-size: 1.2rem;
-  color: #333;
-  text-decoration: none;
+.auth-button.login svg,
+.auth-button.signup svg {
+  stroke: #fff;
 }
 
-.header-title {
-  flex: 1;
+/* Auth buttons shown at top of mobile dropdown (inside scroll area) */
+.mobile-auth-buttons {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.6rem;
+  padding: 0.8rem 1rem 1.2rem;
+  border-bottom: 1px solid #0a3b6f;
+}
+
+.mobile-auth-button {
+  font-size: 0.95rem;
+  justify-content: center;
   text-align: center;
-  font-size: 0.75rem;
-  font-weight: bold;
-  color: #222;
+  border-radius: 14px;
+  padding: 0.6rem 0.8rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+/* subtle hover lift */
+.mobile-auth-button:hover {
+  transform: translateY(-1px);
 }

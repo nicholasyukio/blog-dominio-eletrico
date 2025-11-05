@@ -3,9 +3,8 @@ import { notFound } from 'next/navigation';
 import DOMPurify from 'isomorphic-dompurify';
 import { marked } from 'marked';
 import styles from './page.module.css';
-import { Header } from '../../header';
-import { BioBlog } from './BioBlog';
-import { KnowCourseFromBlogButton } from './KnowCourseFromBlogButton';
+import Header from '../../header';
+import Rodape from '../../rodape';
 import Link from 'next/link';
 
 const API_BASE = process.env.NEXT_PUBLIC_BACKEND_API_BASE_ENDPOINT;
@@ -34,13 +33,26 @@ export async function generateMetadata({ params }) {
 }
 
 export default async function PostPage({ params }) {
-  // Await params if it is a Promise (for compatibility with Next.js dynamic API)
   const resolvedParams = typeof params.then === 'function' ? await params : params;
   const { slug } = resolvedParams;
-  const post = await getPost(slug.slice(0, 5)); // Ensure slug is 5 characters long
+  const post = await getPost(slug.slice(0, 5));
+  console.log(post);
   if (!post) return notFound();
 
-  // Fetch recommended posts (random, excluding current)
+  // Mocked metadata until backend provides real info
+  const mockMeta = {
+    author: 'Prof. Nicholas Yukio',
+    date: new Date().toLocaleDateString('pt-BR', {
+      day: '2-digit',
+      month: 'long',
+      year: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit'
+    }),
+    category: 'Circuitos Elétricos'
+  };
+
+  // Recommended posts (mocked fetch)
   const recommendedPosts = [];
   const currentId = slug.substring(0, 5);
   const getRandomPostIds = (count, max = 100, excludeId) => {
@@ -52,7 +64,7 @@ export default async function PostPage({ params }) {
     }
     return Array.from(ids);
   };
-  const recIds = getRandomPostIds(10, 100, currentId);
+  const recIds = getRandomPostIds(6, 100, currentId);
   await Promise.all(
     recIds.map(async (id) => {
       try {
@@ -65,7 +77,6 @@ export default async function PostPage({ params }) {
     })
   );
 
-  // Parse Markdown to HTML and sanitize
   const rawHtml = await marked.parse(typeof post.content === 'string' ? post.content : '');
   const html = DOMPurify.sanitize(rawHtml);
 
@@ -75,35 +86,44 @@ export default async function PostPage({ params }) {
       <div className={styles.postContainer}>
         <main className={styles.postMain}>
           <h1 className={styles.postTitle}>{post.title}</h1>
+
+          <div className={styles.postMeta}>
+            <span className={styles.metaAuthor}>{mockMeta.author}</span>
+            <span className={styles.metaDivider}>•</span>
+            <span className={styles.metaDate}>{mockMeta.date}</span>
+            <span className={styles.metaDivider}>•</span>
+            <span className={styles.metaCategory}>{mockMeta.category}</span>
+          </div>
+
           <article className={styles.postContent} dangerouslySetInnerHTML={{ __html: html }} />
+
           <hr className={styles.postSeparator} />
-          {/* Recommended posts section */}
+
           {recommendedPosts.length > 0 && (
-            <section style={{ marginTop: '2.5rem', marginBottom: '2.5rem' }}>
-              <h2 style={{ fontSize: '1.2rem', fontWeight: 700, marginBottom: '1rem' }}>Leia também</h2>
-              <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
+            <section className={styles.recommendedSection}>
+              <h2 className={styles.recommendedTitle}>Leia também</h2>
+              <ul className={styles.recommendedList}>
                 {recommendedPosts.map(rp => (
-                  <li key={rp.slug} style={{ marginBottom: '1.1rem' }}>
-                    <Link href={`/posts/${rp.slug}`} style={{ color: '#0070f3', textDecoration: 'none', fontWeight: 600, fontSize: '1.05rem' }}>
+                  <li key={rp.slug}>
+                    <Link href={`/posts/${rp.slug}`} className={styles.recommendedLink}>
                       {rp.title}
                     </Link>
-                    <span style={{ color: '#888', fontSize: '0.95rem', marginLeft: 8 }}>{rp.date}</span>
                   </li>
                 ))}
               </ul>
             </section>
           )}
+
           <hr className={styles.postSeparator} />
-          <p>Se você gostou deste conteúdo, conheça o <a href='https://dominioeletrico.com.br'>site Domínio Elétrico</a>, onde você pode acessar o curso principal Domínio Elétrico, além de vários outros cursos e playlists em vídeos produzidos pelo Prof. Nicholas Yukio.</p>
-          <BioBlog />
+          <p className={styles.postFooterText}>
+            Se você gostou deste conteúdo, conheça o{' '}
+            <a href="https://dominioeletrico.com.br" className={styles.footerLink}>
+              site Domínio Elétrico
+            </a>, onde você pode acessar o curso principal Domínio Elétrico, além de vários outros cursos e playlists em vídeos produzidos pelo Prof. Nicholas Yukio.
+          </p>
         </main>
       </div>
-      <div className={styles.bottomBanner}>
-        <p style={{ margin: 0 }}>
-          No site Domínio Elétrico, você tem acesso a cursos em vídeo e playlists de circuitos elétricos criados pelo Prof. Nicholas Yukio. Clique no botão abaixo para criar uma conta gratuita e começar a estudar agora:
-        </p>
-        <KnowCourseFromBlogButton />
-      </div>
+      <Rodape />
     </>
   );
 }

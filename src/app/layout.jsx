@@ -1,3 +1,4 @@
+import "./globals.css";
 import { Geist, Geist_Mono } from "next/font/google";
 
 const geistSans = Geist({
@@ -12,19 +13,16 @@ const geistMono = Geist_Mono({
 
 export const metadata = {
   title: "Blog do Domínio Elétrico",
+  description: "Blog do Domínio Elétrico - Aprenda sobre eletricidade e engenharia elétrica",
   keywords: ["blog", "domínio elétrico", "eletricidade", "engenharia elétrica"],
   authors: [{ name: "Nicholas Yukio" }],
   creator: "Nicholas Yukio",
-  description: "Blog do Domínio Elétrico - Aprenda sobre eletricidade e engenharia elétrica",
 };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <head>
-        <link rel="icon" href="/favicon.ico" />
-      </head>
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+    <html lang="pt-BR">
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         {children}
       </body>
     </html>

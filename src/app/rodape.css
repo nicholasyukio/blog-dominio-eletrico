@@ -1,0 +1,143 @@
+/* ==============================
+   RODAPE (FOOTER)
+   ============================== */
+
+.rodape {
+  background-color: #072959;
+  color: #e4e8f0;
+  font-family: 'Inter', sans-serif;
+  padding-top: 3rem;
+  margin-top: 4rem;
+}
+
+.rodape-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 3rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* Logo and description */
+.rodape-logo {
+  width: 100px;
+  height: 100px;
+  border-radius: 12px;
+  margin-bottom: 1rem;
+}
+
+.rodape-section {
+  flex: 1;
+  min-width: 250px;
+}
+
+.rodape-description {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #d7e2f0;
+  margin-bottom: 1.5rem;
+}
+
+/* Contact info */
+.rodape-contact p {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  color: #c7d4e5;
+  margin-bottom: 0.5rem;
+}
+
+.rodape-icon {
+  width: 18px;
+  height: 18px;
+  color: #c1d1ec;
+}
+
+/* Links section */
+.rodape-links {
+  display: flex;
+  flex: 1;
+  justify-content: space-between;
+  min-width: 300px;
+  gap: 2rem;
+}
+
+.rodape-links-column h4 {
+  color: #fff;
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+}
+
+.rodape-links-column ul {
+  list-style: none;
+  padding: 0;
+}
+
+.rodape-links-column li {
+  margin-bottom: 0.6rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.rodape-links-column a {
+  text-decoration: none;
+  color: #d0def5;
+  font-size: 0.95rem;
+  transition: color 0.3s ease;
+}
+
+.rodape-links-column a:hover {
+  color: #ffffff;
+}
+
+.rodape-arrow {
+  width: 14px;
+  height: 14px;
+  color: #a8c3f0;
+}
+
+/* Bottom bar */
+.rodape-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  margin-top: 2rem;
+  padding: 1.2rem 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+}
+
+.rodape-copy {
+  color: #b5c4da;
+}
+
+.rodape-cnpj {
+  color: #b5c4da;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+  .rodape-container {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2rem;
+  }
+
+  .rodape-links {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .rodape-bottom {
+    flex-direction: column;
+    text-align: center;
+  }
+}

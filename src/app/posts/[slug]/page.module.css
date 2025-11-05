@@ -1,4 +1,4 @@
-/* Styling for individual blog post page */
+/* --- MAIN CONTAINER --- */
 .postContainer {
   min-height: 100vh;
   display: flex;
@@ -8,154 +8,184 @@
   background: linear-gradient(135deg, #f0f4f8 0%, #fafafa 100%);
   font-family: 'Segoe UI', 'Roboto', 'Arial', sans-serif;
   padding: 0 1rem;
-  padding-bottom: 120px; /* Add enough space for the bottom banner */
+  padding-bottom: 120px;
 }
 
+/* --- POST MAIN --- */
 .postMain {
-  background: #fff;
   border-radius: 16px;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.07);
   margin-top: 3rem;
   margin-bottom: 2rem;
-  padding: 2.5rem 2rem 2rem 2rem;
-  max-width: 700px;
+  padding: 2.5rem 2rem;
+  max-width: 740px;
   width: 100%;
 }
 
+/* --- TITLE --- */
 .postTitle {
-  font-size: 1.7rem;
+  font-size: 1.9rem;
   font-weight: 700;
   margin-bottom: 0.5rem;
-  color: #222;
+  color: #072959;
 }
 
-.postDate {
-  color: #888;
-  font-size: 1rem;
-  margin-bottom: 2rem;
+/* --- META INFO --- */
+.postMeta {
+  color: #4d6b9f;
+  font-size: 0.98rem;
+  margin-bottom: 1.8rem;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.4rem;
 }
 
+.metaAuthor {
+  font-weight: 600;
+  color: #072959;
+}
+
+.metaCategory {
+  background-color: #ffcc33;
+  color: #072959;
+  font-weight: 600;
+  padding: 0.15rem 0.6rem;
+  border-radius: 10px;
+  font-size: 0.85rem;
+}
+
+.metaDivider {
+  color: #999;
+}
+
+/* --- CONTENT --- */
 .postContent {
-  font-size: 1.15rem;
+  font-size: 1.14rem;
   line-height: 1.7;
   color: #222;
 }
 
 .postContent strong {
-  font-weight: bold;
-  color: #0070f3;
+  color: #0a3b6f;
 }
 
+/* --- CONTENT --- */
+.postContent {
+  font-size: 1.14rem;
+  line-height: 1.7;
+  color: #222;
+}
+
+/* --- HEADINGS INSIDE POST CONTENT --- */
 .postContent h1 {
-  font-size: 1.3rem;
-  margin-top: 1.5rem;
-}
-.postContent h2 {
-  font-size: 1.2rem;
-  margin-top: 1.2rem;
-}
-.postContent h3 {
-  font-size: 1rem;
-  margin-top: 1rem;
+  font-size: 1.5rem;  /* smaller than .postTitle (1.9rem) */
+  font-weight: 700;
 }
 
+.postContent h2 {
+  font-size: 1.35rem;
+  font-weight: 600;
+}
+
+.postContent h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.postContent h4,
+.postContent h5,
+.postContent h6 {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.postContent h1,
+.postContent h2,
+.postContent h3,
+.postContent h4,
+.postContent h5,
+.postContent h6 {
+  color: #072959;
+  margin-top: 1.5rem;
+  margin-bottom: 0.8rem;
+  line-height: 1.4;
+}
+
+.postContent a {
+  color: #005f8a;
+  text-decoration: underline;
+  font-weight: 600;
+}
+
+.postContent a:hover {
+  color: #0073aa;
+}
+
+@media (max-width: 600px) {
+  .postContent h1 { font-size: 1.3rem; }
+  .postContent h2 { font-size: 1.2rem; }
+  .postContent h3 { font-size: 1.1rem; }
+}
+
+/* --- RECOMMENDED POSTS --- */
+.recommendedSection {
+  margin-top: 2.8rem;
+  margin-bottom: 2.8rem;
+}
+
+.recommendedTitle {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #072959;
+  margin-bottom: 1rem;
+}
+
+.recommendedList {
+  list-style: none;
+  padding: 0;
+}
+
+.recommendedList li {
+  margin-bottom: 0.8rem;
+}
+
+.recommendedLink {
+  color: #0a3b6f;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.recommendedLink:hover {
+  color: #0073aa;
+}
+
+/* --- FOOTER --- */
+.postFooterText {
+  font-size: 1.05rem;
+  margin-top: 2rem;
+  color: #222;
+}
+
+.footerLink {
+  color: #005f8a;
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.footerLink:hover {
+  color: #0073aa;
+}
+
+/* --- RESPONSIVE --- */
 @media (max-width: 600px) {
   .postMain {
-    padding: 1.2rem 0.5rem;
+    padding: 1.3rem 1rem;
   }
   .postTitle {
-    font-size: 1.4rem;
+    font-size: 1.6rem;
   }
-}
-
-.btnInscricao {
-  background-color: #000d7e; /* Cor de fundo do botão */
-  color: #fdff6e; /* Cor do texto do botão */
-  padding: 10px 20px; /* Espaçamento interno do botão */
-  border: none; /* Remove a borda padrão do botão */
-  border-radius: 5px; /* Arredondamento das bordas */
-  box-shadow: 0 0 15px #b9fa91;
-  text-align: center; /* Centraliza o texto horizontalmente */
-  text-decoration: none; /* Remove a decoração de link do texto */
-  display: block;
-  font-size: 15px; /* Tamanho da fonte */
-  font-weight: 600;
-  cursor: pointer; /* Altera o cursor ao passar por cima */
-  margin: 0 auto;
-}
-.btnInscricao:hover {
-  background-color: #0056b3; /* Cor de fundo ao passar o mouse */
-}
-
-.bottomBanner {
-  position: fixed;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 2000;
-  background: #fffbe6;
-  border-top: 2px solid #ffd700;
-  box-shadow: 0 -2px 16px rgba(0,0,0,0.07);
-  padding: 1.2rem 1rem 1.2rem 1rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.08rem;
-  color: #222;
-  text-align: center;
-}
-
-@media (max-width: 600px) {
-  .bottomBanner {
-    font-size: 0.98rem;
-    padding: 0.8rem 0.3rem 0.8rem 0.3rem;
+  .postContent {
+    font-size: 1.05rem;
   }
-}
-
-.bottomBanner .btnInscricao {
-  margin-top: 0.7rem;
-}
-
-/* BioBlog component styles */
-.bioSection {
-  background: rgb(226, 242, 252);
-  border-radius: 16px;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.07);
-  margin: 2.5rem auto 2.5rem auto;
-  padding: 2.5rem 2rem 2rem 2rem;
-  max-width: 500px;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.bio-image {
-  width: 360px;
-  height: auto;
-  border-radius: 12px;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
-  margin-bottom: 1rem;
-}
-
-.bioText {
-  flex: 1;
-  font-size: 1.08rem;
-  color: #222;
-}
-
-.bioText h2 {
-  font-size: 1.3rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
-}
-
-.bioText p {
-  margin-bottom: 0.7rem;
-  line-height: 1.6;
-}
-
-.bioText .btnInscricao {
-  margin-top: 1.2rem;
 }
