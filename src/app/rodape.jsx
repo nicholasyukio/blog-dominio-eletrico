@@ -37,13 +37,13 @@ export default function Rodape() {
             <h4 className="rodape-links-title">Explorar</h4>
             <ul>
               <li>
-                <ArrowRight className="rodape-arrow" /> <Link href="/">Início</Link>
+                <ArrowRight className="rodape-arrow" /> <Link href="https://dominioeletrico.com.br/">Início</Link>
               </li>
               <li>
-                <ArrowRight className="rodape-arrow" /> <Link href="/conteudo">Conteúdo</Link>
+                <ArrowRight className="rodape-arrow" /> <Link href="https://dominioeletrico.com.br/conteudo">Conteúdo</Link>
               </li>
               <li>
-                <ArrowRight className="rodape-arrow" /> <Link href="/sobre">Sobre nós</Link>
+                <ArrowRight className="rodape-arrow" /> <Link href="https://dominioeletrico.com.br/sobre">Sobre nós</Link>
               </li>
             </ul>
           </div>
@@ -52,13 +52,13 @@ export default function Rodape() {
             <h4 className="rodape-links-title">Ajuda</h4>
             <ul>
               <li>
-                <ArrowRight className="rodape-arrow" /> <Link href="/duvidas">Perguntas frequentes</Link>
+                <ArrowRight className="rodape-arrow" /> <Link href="https://dominioeletrico.com.br/duvidas">Perguntas frequentes</Link>
               </li>
               <li>
-                <ArrowRight className="rodape-arrow" /> <Link href="/termosdeuso">Termos de uso</Link>
+                <ArrowRight className="rodape-arrow" /> <Link href="https://dominioeletrico.com.br/termosdeuso">Termos de uso</Link>
               </li>
               <li>
-                <ArrowRight className="rodape-arrow" /> <Link href="/politicadeprivacidade">Política de privacidade</Link>
+                <ArrowRight className="rodape-arrow" /> <Link href="https://dominioeletrico.com.br/politicadeprivacidade">Política de privacidade</Link>
               </li>
             </ul>
           </div>

@@ -14,6 +14,9 @@ const geistMono = Geist_Mono({
 export const metadata = {
   title: "Blog do Domínio Elétrico",
   description: "Blog do Domínio Elétrico - Aprenda sobre eletricidade e engenharia elétrica",
+  icons: {
+    icon: "./favicon.png",
+  },
   keywords: ["blog", "domínio elétrico", "eletricidade", "engenharia elétrica"],
   authors: [{ name: "Nicholas Yukio" }],
   creator: "Nicholas Yukio",
@@ -22,6 +25,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="pt-BR">
+      <head>
+        <link rel="icon" href="/favicon.png" />
+      </head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         {children}
       </body>

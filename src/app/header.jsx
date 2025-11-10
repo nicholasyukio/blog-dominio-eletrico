@@ -21,27 +21,28 @@ function getNomeCurto(user) {
 }
 
 const publicLinks = [
-  { label: 'Início', href: '/', icon: <Home size={18} /> },
-  { label: 'Sobre', href: '/sobre', icon: <Info size={18} /> },
-  { label: 'Conteúdo', href: '/conteudo', icon: <BookOpen size={18} /> },
-  { label: 'FAQ', href: '/duvidas', icon: <MessageCircleQuestion size={18} /> },
-  { label: 'Alunos Antigos', href: '/antigos', icon: <GraduationCap size={18} /> },
+  { label: 'Início', href: 'https://dominioeletrico.com.br/', icon: <Home size={18} /> },
+  { label: 'Sobre', href: 'https://dominioeletrico.com.br/sobre', icon: <Info size={18} /> },
+  { label: 'Conteúdo', href: 'https://dominioeletrico.com.br/conteudo', icon: <BookOpen size={18} /> },
+  { label: 'FAQ', href: 'https://dominioeletrico.com.br/duvidas', icon: <MessageCircleQuestion size={18} /> },
+  { label: 'Alunos Antigos', href: 'https://dominioeletrico.com.br/antigos', icon: <GraduationCap size={18} /> },
 ];
 
 const courses = [
-  { label: 'Domínio Elétrico (conteúdo principal)', href: '/public-course-page/curso-dominio-eletrico', icon: <BookOpen size={18} /> },
-  { label: 'Domínio Elétrico Labs', href: '/public-course-page/dominio-eletrico-labs', icon: <BookOpen size={18} /> },
-  { label: 'Matemática do Elétron', href: '/public-course-page/matematica-do-eletron', icon: <BookOpen size={18} /> },
+  { label: 'Domínio Elétrico (conteúdo principal)', href: 'https://dominioeletrico.com.br/public-course-page/curso-dominio-eletrico', icon: <BookOpen size={18} /> },
+  { label: 'Domínio Elétrico Labs', href: 'https://dominioeletrico.com.br/public-course-page/dominio-eletrico-labs', icon: <BookOpen size={18} /> },
+  { label: 'Matemática do Elétron', href: 'https://dominioeletrico.com.br/public-course-page/matematica-do-eletron', icon: <BookOpen size={18} /> },
 ];
 
 const loggedLinks = [
-  { label: 'Dashboard', href: '/dashboard', icon: <LayoutDashboard size={18} /> },
-  { label: 'Cursos', href: '/allcourses', icon: <Library size={18} /> },
-  { label: 'Fórum', href: '/forum', icon: <MessageSquare size={18} /> },
-  { label: 'Chats', href: '/chats', icon: <MessageCircle size={18} /> },
+  { label: 'Dashboard', href: 'https://dominioeletrico.com.br/dashboard', icon: <LayoutDashboard size={18} /> },
+  { label: 'Cursos', href: 'https://dominioeletrico.com.br/allcourses', icon: <Library size={18} /> },
+  { label: 'Fórum', href: 'https://dominioeletrico.com.br/forum', icon: <MessageSquare size={18} /> },
+  { label: 'Chats', href: 'https://dominioeletrico.com.br/chats', icon: <MessageCircle size={18} /> },
 ];
 
-export default function Header({ isMobile }) {
+export default function Header() {
+  const [isMobile, setIsMobile] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [coursesOpen, setCoursesOpen] = useState(false);
   const [loggedOpen, setLoggedOpen] = useState(false);
@@ -53,6 +54,17 @@ export default function Header({ isMobile }) {
   const toggleMenu = () => setMenuOpen((prev) => !prev);
   const toggleCourses = () => setCoursesOpen((prev) => !prev);
   const toggleLogged = () => setLoggedOpen((prev) => !prev);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   useEffect(() => {
     async function fetchAccountType() {
@@ -91,15 +103,15 @@ export default function Header({ isMobile }) {
   let authLinks;
   if (user && accountType === 'free') {
     authLinks = [
-      { label: `${getNomeCurto(user)} (sair)`, href: '/logon', type: 'logout', icon: <LogOut size={18} /> },
-      { label: 'Upgrade', href: '/upgrade', type: 'upgrade', icon: <ArrowUpCircle size={18} /> },
+      { label: `${getNomeCurto(user)} (sair)`, href: 'https://dominioeletrico.com.br/logon', type: 'logout', icon: <LogOut size={18} /> },
+      { label: 'Upgrade', href: 'https://dominioeletrico.com.br/upgrade', type: 'upgrade', icon: <ArrowUpCircle size={18} /> },
     ];
   } else if (user) {
     authLinks = [{ label: `${getNomeCurto(user)} (sair)`, href: '/logon', type: 'logout', icon: <LogOut size={18} /> }];
   } else {
     authLinks = [
-      { label: 'Login', href: '/logon', type: 'login', icon: <LogIn size={18} /> },
-      { label: 'Criar conta', href: '/signup', type: 'signup', icon: <UserPlus size={18} /> },
+      { label: 'Login', href: 'https://dominioeletrico.com.br/logon', type: 'login', icon: <LogIn size={18} /> },
+      { label: 'Criar conta', href: 'https://dominioeletrico.com.br/signup', type: 'signup', icon: <UserPlus size={18} /> },
     ];
   }
 
@@ -108,7 +120,7 @@ export default function Header({ isMobile }) {
     return (
       <header className="header">
         <div className="logo-container">
-          <Link href="/" title="Domínio Elétrico" className="logo-link">
+          <Link href="https://dominioeletrico.com.br/" title="Domínio Elétrico" className="logo-link">
             <img src="/dominio_eletrico_logo_2023_square_fundo_transparente.png" alt="Logo do Domínio Elétrico" className="logo" />
           </Link>
         </div>
@@ -141,7 +153,7 @@ export default function Header({ isMobile }) {
               {/* Cursos dropdown */}
               <li className="menu-title-collapsible">
                 <div className="menu-title-row">
-                  <Link href="/allcourses" className="link">Cursos</Link>
+                  <Link href="https://dominioeletrico.com.br/allcourses" className="link">Cursos</Link>
                   <button onClick={toggleCourses} className="collapse-toggle" aria-expanded={coursesOpen}>
                     {coursesOpen ? <ChevronUp size={18} /> : <ChevronRight size={18} />}
                   </button>
@@ -163,7 +175,7 @@ export default function Header({ isMobile }) {
               {/* Área logada dropdown */}
               <li className="menu-title-collapsible">
                 <div className="menu-title-row">
-                  <Link href="/dashboard" className="link">Área logada</Link>
+                  <Link href="https://dominioeletrico.com.br/dashboard" className="link">Área logada</Link>
                   <button onClick={toggleLogged} className="collapse-toggle" aria-expanded={loggedOpen}>
                     {loggedOpen ? <ChevronUp size={18} /> : <ChevronRight size={18} />}
                   </button>
@@ -192,7 +204,7 @@ export default function Header({ isMobile }) {
   return (
     <header className="header header-desktop">
       <div className="logo-container">
-        <Link href="/" title="Domínio Elétrico" className="logo-link">
+        <Link href="https://dominioeletrico.com.br/" title="Domínio Elétrico" className="logo-link">
           <img src="/dominio_eletrico_logo_2023_square_fundo_transparente.png" alt="Logo do Domínio Elétrico" className="logo" />
         </Link>
       </div>
