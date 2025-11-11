@@ -57,7 +57,7 @@ export default async function Home() {
                 }}
               >
                 <Link
-                  href={`/artigos/${post.slug}`}
+                  href={`/blog/artigos/${post.slug}`}
                   style={{
                     textDecoration: "none",
                     color: "#072959",
@@ -82,10 +82,10 @@ export default async function Home() {
                     marginTop: "0.7rem",
                   }}
                 >
-                  {post.description?.slice(0, 200)}
-                  {post.description && post.description.length > 200 ? "..." : ""}
+                  {post.description?.slice(0, 100)}
+                  {post.description && post.description.length > 100 ? "..." : ""}
                 </div>
-                <a href={`/artigos/${post.slug}`}>
+                <a href={`/blog/artigos/${post.slug}`}>
                 <img className={styles["thumbnail-img"]} src={`https://dominio-eletrico-static-site.s3.sa-east-1.amazonaws.com/images/${post.thumbnail}`} alt={post.title}/>
                 </a>
               </li>

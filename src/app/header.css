@@ -184,10 +184,10 @@
 /* MOBILE DROPDOWN */
 .dropdown {
   position: fixed;
-  top: 50px;
+  top: 60px;
   left: 0;
   width: 100%;
-  height: calc(100vh - 50px);
+  height: calc(100vh - 60px);
   background-color: #072959;
   z-index: 999;
   padding: 1rem 1rem 3.5rem 1.6rem;

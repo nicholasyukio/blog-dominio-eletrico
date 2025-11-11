@@ -7,7 +7,7 @@ import {
   X, ChevronDown, ChevronRight, ChevronUp, Home, Info, BookOpen, Cpu,
   Users, FileCheck, Lightbulb, Hammer, LayoutDashboard, Library,
   MessageSquare, MessageCircle, Zap, LogIn, UserPlus, LogOut, ArrowUpCircle,
-  MessageCircleQuestion, GraduationCap
+  MessageCircleQuestion, GraduationCap, FileText
 } from 'lucide-react';
 import './header.css';
 
@@ -26,6 +26,7 @@ const publicLinks = [
   { label: 'Conteúdo', href: 'https://dominioeletrico.com.br/conteudo', icon: <BookOpen size={18} /> },
   { label: 'FAQ', href: 'https://dominioeletrico.com.br/duvidas', icon: <MessageCircleQuestion size={18} /> },
   { label: 'Alunos Antigos', href: 'https://dominioeletrico.com.br/antigos', icon: <GraduationCap size={18} /> },
+  { label: 'Blog', href: 'https://dominioeletrico.com.br/blog', icon: <FileText size={18} /> },
 ];
 
 const courses = [
