@@ -5,9 +5,11 @@ import Rodape from "./rodape.jsx";
 
 const API_BASE = process.env.NEXT_PUBLIC_BACKEND_API_BASE_ENDPOINT;
 
+export const revalidate = 86400;
+
 async function getPosts() {
   let posts = [];
-  const res = await fetch(`${API_BASE}/get-all-posts`, { cache: 'no-store' })
+  const res = await fetch(`${API_BASE}/get-all-posts`);
   if (res.ok) {
     posts = await res.json();
   }
