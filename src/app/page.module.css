@@ -125,3 +125,119 @@
 .bottomBanner .btnInscricao {
   margin-top: 0.7rem;
 }
+
+/* Added to improve article card styling */
+
+.articleCard {
+  display: flex;
+  flex-direction: column;
+  max-width: 800px;
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.06);
+}
+
+.articleCard:hover {
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
+}
+
+.thumbnailImg {
+  width: 100%;
+  max-width: 720px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 1.2rem;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.05);
+}
+
+.articleContent {
+  text-align: left;
+}
+
+.articleTitle {
+  text-decoration: none;
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: #072959;
+  transition: color 0.2s ease;
+}
+
+.articleTitle:hover {
+  color: #0051a3;
+}
+
+.postMeta {
+  color: #4d6b9f;
+  font-size: 0.98rem;
+  margin-top: 0.75rem;
+  margin-bottom: 1.8rem;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.metaAuthor {
+  font-weight: 600;
+  color: #072959;
+}
+
+.metaCategory {
+  background-color: #ffcc33;
+  color: #072959;
+  font-weight: 600;
+  padding: 0.15rem 0.6rem;
+  border-radius: 10px;
+  font-size: 0.85rem;
+}
+
+.metaDivider {
+  color: #999;
+}
+
+.description {
+  margin-top: 0.8rem;
+  margin-bottom: 1.2rem;
+  font-size: 1rem;
+  color: #333;
+  line-height: 1.45;
+}
+
+.readMoreContainer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.readMore {
+  display: inline-block;
+  background: #072959;
+  color: #fff;
+  padding: 0.65rem 1.3rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: background 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 3px 10px rgba(0, 112, 243, 0.12);
+}
+
+.readMore:hover {
+  background: #0070f3;
+  box-shadow: 0 4px 18px rgba(0, 112, 243, 0.18);
+}
+
+/* Responsivo */
+@media (max-width: 600px) {
+  .articleCard {
+    padding: 1rem;
+  }
+  .articleTitle {
+    font-size: 1.25rem;
+  }
+  .thumbnailImg {
+    max-height: 240px;
+  }
+}
+

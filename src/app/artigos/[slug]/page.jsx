@@ -53,10 +53,10 @@ export default async function PostPage({ params }) {
             <span className={styles.metaAuthor}>{post.author}</span>
             <span className={styles.metaDivider}>•</span>
             <span className={styles.metaDate}>
-              {new Date(post.created_at).toLocaleDateString("pt-BR", {
-                day: "2-digit",
-                month: "long",
-                year: "numeric",
+              {new Date(post.created_at).toLocaleString("pt-BR", {
+                timeZone: "America/Sao_Paulo",
+                dateStyle: "medium",
+                timeStyle: "short",
               })}
             </span>
             <span className={styles.metaDivider}>•</span>
