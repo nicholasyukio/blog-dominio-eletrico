@@ -11,7 +11,7 @@ import Head from 'next/head';
 const API_BASE = process.env.NEXT_PUBLIC_BACKEND_API_BASE_ENDPOINT;
 
 async function getPost(slug) {
-  const res = await fetch(`${API_BASE}/get-post-by-id/${slug}`);
+  const res = await fetch(`${API_BASE}/posts/get-post-by-id/${slug}`);
   if (!res.ok) return null;
   return res.json();
 }

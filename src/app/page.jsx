@@ -9,7 +9,7 @@ export const revalidate = 86400;
 
 async function getPosts() {
   let posts = [];
-  const res = await fetch(`${API_BASE}/get-all-posts`);
+  const res = await fetch(`${API_BASE}/posts/get-all-posts`);
   if (res.ok) {
     posts = await res.json();
   }
