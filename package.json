@@ -13,7 +13,7 @@
     "isomorphic-dompurify": "^2.25.0",
     "lucide-react": "^0.552.0",
     "marked": "^15.0.12",
-    "next": "15.3.3",
+    "next": "15.3.8",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
